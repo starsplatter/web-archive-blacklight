@@ -75,7 +75,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'waformat_tesim', label: 'Format'
     config.add_facet_field 'wasubject_tesim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'walanguage_tesim', label: 'Language', limit: true
-    config.add_facet_field 'wacoverage_tesim', label: 'Location'
+    config.add_facet_field 'wacoverage_tesim', label: 'Location', limit: true
     config.add_facet_field 'wacollection_tesim', label: 'Collection', limit: true
 
 
