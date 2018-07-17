@@ -9,7 +9,7 @@ gem "dotenv-rails"
 gem "dotenv-deployment"
 
 gem 'blacklight'
-gem 'traject', :git => 'https://github.com/traject/traject', :branch => 'master'
+gem 'traject', :git => 'https://github.com/traject/traject', :branch => 'wip_3_0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
