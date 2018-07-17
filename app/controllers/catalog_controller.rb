@@ -40,7 +40,7 @@ class CatalogController < ApplicationController
     #}
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'watitle_tesim'
+    config.index.title_field = 'book_title_tesim'
     #config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr field configuration for document/show views
@@ -89,15 +89,15 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'wadescription_tesim', label: 'Description'
+    config.add_index_field 'image_ocr_tesim', label: 'Description'
 
     config.add_index_field 'wacollection_tesim', label: 'Collection'
 
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'watitle_tesim', label: 'Title'
-    config.add_show_field 'wadescription_tesim', label: 'Description'
+    config.add_show_field 'book_title_tesim', label: 'Title'
+    config.add_show_field 'image_ocr_tesim', label: 'Description'
     
     config.add_show_field 'waformat_tesim', label: 'Format'
     config.add_show_field 'waurl_tesim', label: 'URL', helper_method: :weblink
@@ -134,11 +134,9 @@ class CatalogController < ApplicationController
     # of Solr search fields.
 
     config.add_search_field('title') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_parameters = {
-        'spellcheck.dictionary': 'title',
-        qf: '${title_qf}',
-        pf: '${title_pf}'
+      field.solr_local_parameters = {
+        :qf => '$title_qf',
+        :pf => '$title_pf'
       }
     end
 

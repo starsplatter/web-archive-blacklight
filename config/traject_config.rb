@@ -21,7 +21,7 @@ extend Traject::Macros::MarcFormats
 # files however you like, you can call traject with as many
 # config files as you like, `traject -c one.rb -c two.rb -c etc.rb`
 settings do
-  provide "solr.url", "<%= ENV['SOLR_URL'] %>"
+  provide "solr.url", "#{ENV['SOLR_URL']}"
   provide "solr.version", "7.4.0"
   provide "nokogiri.namespaces", {
   "oai" => "http://www.openarchives.org/OAI/2.0/",
@@ -44,9 +44,9 @@ end
 # Extract first 001, then supply code block to add "bib_" prefix to it
 
 
-to_field "watitle_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:title")
+to_field "book_title_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:title")
 to_field "wasubject_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:subject")
-to_field "wadescription_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:description")
+to_field "image_ocr_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:description")
 to_field "walanguage_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:language")
 to_field "wacoverage_tesim", extract_xpath("/oai:record/oai:metadata/oai_dc:dc/dc:coverage")
 to_field "waurl_tesim", extract_xpath("/oai:record/oai:header/oai:identifier")
@@ -85,7 +85,7 @@ def collection_name(node)
 end
 
 each_record do |record,context|
-  if context.output_hash["watitle_tesim"].nil?
+  if context.output_hash["book_title_tesim"].nil?
     context.skip!("no title")
   end
 end
